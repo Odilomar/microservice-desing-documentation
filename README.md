@@ -139,77 +139,7 @@ CMD ["node","app.js"]
 2. Build and push the image to Docker Hub.
 3. Automated deployment to Kubernetes via GitHub Actions.
 
-**Example**:
-
-```
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Run linting
-        run: npm run lint
-      
-      - name: Run tests
-        run: npm test
-
-  docker-build:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      
-      - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/microservice:latest .
-      
-      - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/microservice:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: docker-build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'latest'
-      
-      - name: Configure Kubernetes
-        run: echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-      
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl set image deployment/microservice microservice=${{ secrets.DOCKER_USERNAME }}/microservice:latest
-          kubectl rollout status deployment/microservice
-
-```
+**Example**: See ci-cd.pipeline.yaml file
 
 ## 7. Testing
 
