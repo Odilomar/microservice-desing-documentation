@@ -104,7 +104,8 @@ package.json
 
 - **Dockerfile:** Defines the microservice image.
 - **Docker Compose:** Optional configuration for the local environment.
-- **Example**: See Dockerfile-multistage-example file
+  
+**Example**: See Dockerfile-multistage-example file
 
 ## 5. Kubernetes Deployment
 
@@ -126,6 +127,8 @@ package.json
 - **Unit Tests:** Validation and data persistence.
 - **Integration Tests:** Simulating real API calls.
 - **Load Testing:** Ensuring response time under 500ms.
+
+**Example**: See testing-strategy.md file
 
 ## 8. Future Enhancements
 
