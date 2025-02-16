@@ -104,27 +104,7 @@ package.json
 
 - **Dockerfile:** Defines the microservice image.
 - **Docker Compose:** Optional configuration for the local environment.
-
-```docker
-### DOCKERFILE MULTI-STAGE EXAMPLE ###
-
-### STAGE 01: Install packages
-FROM node:lts-alpine AS builder 
-WORKDIR /app
-RUN apk add --no-cache git make python3 g++
-COPY --chown=node:node ./package*.json . 
-RUN npm install ci 
-COPY . .
-
-### STAGE 02: Build app
-FROM alpine AS runner 
-RUN apk add --update --no-cache nodejs
-USER node
-WORKDIR /app
-COPY --chown=node:node --from=builder /app/ . 
-
-CMD ["node","app.js"]
-```
+- **Example**: See Dockerfile-multistage-example file
 
 ## 5. Kubernetes Deployment
 
