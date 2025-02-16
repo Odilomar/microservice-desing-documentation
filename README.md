@@ -111,6 +111,8 @@ package.json
 
 - **Deployment with Horizontal Pod Autoscaler (HPA)** to automatically scale based on load.
 - **YAML Manifests:** Define Deployment, Service, and ConfigMap.
+  
+**Example**: See kubernetes-deployment.md file
 
 ## 6. CI/CD Pipeline
 
